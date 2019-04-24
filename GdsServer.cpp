@@ -88,8 +88,8 @@ unsigned GdsServer::Request(void* ptr_s) {
   s.SendLine(std::string("Server: ") + serverName);
   s.SendLine("Connection: close");
   s.SendLine(std::string("Content-Type: ") + req.content_type_);
-  s.SendLine("Content-Length: " + str_str.str());
-  s.SendLine("");
+  s.SendLine("Content-Length: " + str_str.str() + "\r");
+  s.SendLine("\r");
   s.SendLine(req.answer_);
 
   s.Close();
