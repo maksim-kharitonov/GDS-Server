@@ -22,7 +22,9 @@ include_directories (.)
 
 file (GLOB APP_SOURCES
   "*.h"
-  "*.cpp")
+  "*.cpp"
+  "lib/*.h"
+  "lib/*.cpp")
 source_group("" FILES ${APP_SOURCES})
 
 # Set Properties->General->Configuration Type to Application(.exe)

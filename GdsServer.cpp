@@ -7,8 +7,6 @@
 
 #include "GdsServer.h"
 #include "Socket.h"
-//#include "UrlHelper.h"
-//#include "base64.h"
 
 GdsServer::request_func GdsServer::request_func_ = 0;
 
