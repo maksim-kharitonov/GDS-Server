@@ -1,0 +1,6 @@
+D:/PROJECT/GIT/cpp/GDS-Server/_install/gdsserver.exe
+D:/PROJECT/GIT/cpp/GDS-Server/_install/resources/BookResponseSirena.xml
+D:/PROJECT/GIT/cpp/GDS-Server/_install/resources/HoldResponseSirena.xml
+D:/PROJECT/GIT/cpp/GDS-Server/_install/resources/index.html
+D:/PROJECT/GIT/cpp/GDS-Server/_install/resources/SearchResponseSirena.xml
+D:/PROJECT/GIT/cpp/GDS-Server/_install/resources/TicketResponseSirena.xml

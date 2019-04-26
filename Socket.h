@@ -18,13 +18,7 @@ class Socket {
 
   void Close();
 
-  // The parameter of SendLine is not a const reference
-  // because SendLine modifes the std::string passed.
   void SendLine(std::string);
-
-  // The parameter of SendBytes is a const reference
-  // because SendBytes does not modify the std::string passed
-  // (in contrast to SendLine).
   void SendBytes(const std::string&);
 
  protected:
@@ -34,14 +28,14 @@ class Socket {
   Socket(SOCKET s);
   Socket();
 
-  SOCKET s_;
+  SOCKET _socket;
 
-  int* refCounter_;
+  int* _refCounter;
 
  private:
   static void Start();
   static void End();
-  static int nofSockets_;
+  static int _openSocketNum;
 };
 
 class SocketClient : public Socket {

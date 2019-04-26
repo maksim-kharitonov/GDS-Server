@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sirena>
+  <answer pult="ОНГЕТ1" msgid="26423" time="12:54:00 10.04.2019" instance="ГРУ">
+    <pnr status="TKT">AABBCC</pnr>
+    <tickets>
+      <ticket status="OK">2234423549</ticket>
+      <ticket status="OK">2234423550</ticket>
+    </tickets>
+  </answer>
+</sirena>

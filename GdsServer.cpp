@@ -21,9 +21,9 @@ unsigned GdsServer::Request(void* ptr_s) {
   http_request req;
 
   if (line.find("GET") == 0) {
-    req.method_ = "GET";
+    req._method = "GET";
   } else if (line.find("POST") == 0) {
-    req.method_ = "POST";
+    req._method = "POST";
   }
 
   std::string path;
@@ -33,9 +33,9 @@ unsigned GdsServer::Request(void* ptr_s) {
 
   SplitGetReq(line.substr(posStartPath), path, params);
 
-  req.status_ = "202 OK";
-  req.s_ = &s;
-  req.path_ = path;
+  req._http_status = "202 OK";
+  req.sPtr = &s;
+  req._path = path;
   req.params_ = params;
 
   static const std::string accept = "Accept: ";
@@ -56,18 +56,18 @@ unsigned GdsServer::Request(void* ptr_s) {
     if (line.substr(0, accept.size()) == accept) {
       req.accept_ = line.substr(accept.size());
     } else if (line.substr(0, accept_language.size()) == accept_language) {
-      req.accept_language_ = line.substr(accept_language.size());
+      req._accept_language = line.substr(accept_language.size());
     } else if (line.substr(0, accept_encoding.size()) == accept_encoding) {
-      req.accept_encoding_ = line.substr(accept_encoding.size());
+      req._accept_encoding = line.substr(accept_encoding.size());
     } else if (line.substr(0, user_agent.size()) == user_agent) {
-      req.user_agent_ = line.substr(user_agent.size());
+      req._user_agent = line.substr(user_agent.size());
     }
   }
 
   request_func_(&req);
 
   std::stringstream str_str;
-  str_str << req.answer_.size();
+  str_str << req._answer.size();
 
   time_t ltime;
   time(&ltime);
@@ -80,23 +80,23 @@ unsigned GdsServer::Request(void* ptr_s) {
 
   s.SendBytes("HTTP/1.1 ");
 
-  s.SendLine(req.status_);
+  s.SendLine(req._http_status);
 
   s.SendLine(std::string("Date: ") + asctime_remove_nl + " GMT");
   s.SendLine(std::string("Server: ") + serverName);
   s.SendLine("Connection: close");
-  s.SendLine(std::string("Content-Type: ") + req.content_type_);
+  s.SendLine(std::string("Content-Type: ") + req._content_type);
   s.SendLine("Content-Length: " + str_str.str() + "\r");
   s.SendLine("\r");
-  s.SendLine(req.answer_);
+  s.SendLine(req._answer);
 
   s.Close();
 
   return 0;
 }
 
-GdsServer::GdsServer(unsigned int port_to_listen, request_func r) {
-  SocketServer in(port_to_listen, 5);
+GdsServer::GdsServer(unsigned int port, request_func r) {
+  SocketServer in(port, 5);
 
   request_func_ = r;
 

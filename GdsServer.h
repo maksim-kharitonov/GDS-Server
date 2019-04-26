@@ -8,23 +8,23 @@ class GdsServer {
   struct http_request {
     http_request() {}
 
-    Socket* s_;
-    std::string method_;
-    std::string path_;
+    Socket* sPtr;
+    std::string _method;
+    std::string _path;
     std::map<std::string, std::string> params_;
 
     std::string accept_;
-    std::string accept_language_;
-    std::string accept_encoding_;
-    std::string user_agent_;
+    std::string _accept_language;
+    std::string _accept_encoding;
+    std::string _user_agent;
 
-    std::string content_type_;
-    std::string status_;
-    std::string answer_;
+    std::string _content_type;
+    std::string _http_status;
+    std::string _answer;
   };
 
   typedef void (*request_func)(http_request*);
-  GdsServer(unsigned int port_to_listen, request_func);
+  GdsServer(unsigned int port, request_func);
 
  private:
   static unsigned __stdcall Request(void*);
